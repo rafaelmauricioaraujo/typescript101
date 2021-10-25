@@ -1,4 +1,5 @@
-import { Negotiation } from "./js/models/negotiation.js";
+import { Negotiation } from "./models/negotiation.js";
+
 const negotiation = new Negotiation(new Date(), 10, 1000);
 console.log(negotiation);
 console.log(negotiation.value);
