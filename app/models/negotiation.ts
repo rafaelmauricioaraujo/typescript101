@@ -8,7 +8,6 @@ export class Negotiation {
         const date = new Date(this._date.getTime());
         return date;
     }
-
     get volume(): number {
         return this.quantity * this.value;
     }
