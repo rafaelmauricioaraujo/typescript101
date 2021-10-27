@@ -1,3 +1,4 @@
+import { DaysOfWeek } from "../enums/daysofweek.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
 import { MessageView } from "../views/message-view.js";
@@ -14,9 +15,16 @@ export class NegotiationController {
     }
     addNegotiation() {
         const negotiation = this.createNegotiation();
+        if (!this.isWeekDay(negotiation.date)) {
+            this.messageView.update("Only on weekdays");
+            return;
+        }
         this.negotiations.addNegotiation(negotiation);
         this.clearForm();
         this.updateView();
+    }
+    isWeekDay(date) {
+        return date.getDay() > DaysOfWeek.SUNDAY && date.getDay() < DaysOfWeek.SATURDAY;
     }
     createNegotiation() {
         const exp = /-/g;
