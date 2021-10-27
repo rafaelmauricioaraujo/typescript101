@@ -4,6 +4,9 @@ export abstract class View<T> {
     constructor(selector: string){
         this.element = document.querySelector(selector);
     }
+    
+    protected abstract template(model: T): string;
 
     abstract update(model: T): void;
+
 }

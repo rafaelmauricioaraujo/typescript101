@@ -6,7 +6,6 @@ export class MessageView extends View {
         `;
     }
     update(model) {
-        const template = this.template(model);
-        this.element.innerHTML = template;
+        this.element.innerHTML = this.template(model);
     }
 }

@@ -22,12 +22,11 @@ export class NegotiationController {
     addNegotiation(): void {
         const negotiation = this.createNegotiation();
         this.negotiations.addNegotiation(negotiation);
-        this.negotiationsView.update(this.negotiations);
-        this.messageView.update("Item created Sucess");
         this.clearForm();
+        this.updateView();
     }
 
-    createNegotiation(): Negotiation {
+    private createNegotiation(): Negotiation {
         const exp = /-/g;
         const date = new Date(this.inputDate.value.replace(exp, ","));
         const quantity = parseInt(this.inputQuantity.value);
@@ -35,12 +34,17 @@ export class NegotiationController {
         return new Negotiation(date, quantity, value);
     }
 
-    clearForm(): void {
+    private clearForm(): void {
         this.inputDate.value = "";
         this.inputQuantity.value = "";
         this.inputValue.value = "";
         this.inputDate.focus();
 
+    }
+
+    private updateView(){
+        this.negotiationsView.update(this.negotiations);
+        this.messageView.update("Item created Sucess");
     }
 
 }
