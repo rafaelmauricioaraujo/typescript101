@@ -28,10 +28,6 @@ export class NegotiationsView extends View<Negotiations> {
         `;
     }
 
-    public update(model: Negotiations): void {
-        this.element.innerHTML = this.template(model);
-    }
-
     private formating(Date: Date){
         return new Intl.DateTimeFormat().format(Date);
     }

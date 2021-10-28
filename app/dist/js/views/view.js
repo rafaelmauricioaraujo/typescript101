@@ -14,9 +14,9 @@ export class View {
     }
     update(model) {
         let template = this.template(model);
-        this.element.innerHTML = template;
         if (this.escape) {
             template = template.replace(/<script>[\s\S]*?<\/script>/, "");
         }
+        this.element.innerHTML = template;
     }
 }

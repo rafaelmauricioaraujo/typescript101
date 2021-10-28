@@ -8,8 +8,4 @@ export class MessageView extends View<string> {
         `;
     }
 
-    public update(model: string): void {
-        this.element.innerHTML = this.template(model)
-    }
-
 }
