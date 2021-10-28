@@ -1,3 +1,4 @@
+
 export abstract class View<T> {
     protected element: HTMLElement;
     private escape = false;

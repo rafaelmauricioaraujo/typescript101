@@ -1,3 +1,4 @@
+import { runtimeLogin } from "../decorators/runtime-login.js";
 import { DaysOfWeek } from "../enums/daysofweek.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
@@ -20,6 +21,7 @@ export class NegotiationController {
         this.negotiationsView.update(this.negotiations)
     }
 
+    @runtimeLogin()
     public addNegotiation(): void {
 
         const negotiation = Negotiation.createFrom(
