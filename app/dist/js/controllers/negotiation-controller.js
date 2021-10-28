@@ -45,5 +45,5 @@ export class NegotiationController {
     }
 }
 __decorate([
-    runtimeLogin()
+    runtimeLogin(true)
 ], NegotiationController.prototype, "addNegotiation", null);

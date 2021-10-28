@@ -1,3 +1,5 @@
+import { inspect } from "../decorators/inspect.js";
+import { runtimeLogin } from "../decorators/runtime-login.js";
 
 export abstract class View<T> {
     protected element: HTMLElement;
@@ -16,6 +18,8 @@ export abstract class View<T> {
         }
     }
 
+    @runtimeLogin()
+    @inspect()
     public update(model: T): void {
         let template = this.template(model);
         if (this.escape) {

@@ -21,7 +21,7 @@ export class NegotiationController {
         this.negotiationsView.update(this.negotiations)
     }
 
-    @runtimeLogin()
+    @runtimeLogin(true)
     public addNegotiation(): void {
 
         const negotiation = Negotiation.createFrom(
