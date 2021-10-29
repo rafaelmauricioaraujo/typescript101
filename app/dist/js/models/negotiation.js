@@ -1,7 +1,5 @@
-import { Printable } from "../utils/printable.js";
-export class Negotiation extends Printable {
+export class Negotiation {
     constructor(date, quantity, value) {
-        super();
         this.quantity = quantity;
         this.value = value;
         this._date = date;
