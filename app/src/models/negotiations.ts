@@ -1,6 +1,7 @@
+import { Printable } from "../utils/printable.js";
 import { Negotiation } from "./negotiation.js";
 
-export class Negotiations {
+export class Negotiations extends Printable {
     private negotiations: Array<Negotiation> = [];
 
     /** 
@@ -22,4 +23,9 @@ export class Negotiations {
         return this.negotiations;
     }
      */
+
+    public toText(): string {
+        return JSON.stringify(this.negotiations);
+    }
+    
 }
