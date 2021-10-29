@@ -4,6 +4,7 @@ import { runtimeLogin } from "../decorators/runtime-login.js";
 import { DaysOfWeek } from "../enums/daysofweek.js";
 import { Negotiation } from "../models/negotiation.js";
 import { Negotiations } from "../models/negotiations.js";
+import { NegotiationService } from "../services/negotiation-service.js";
 import { MessageView } from "../views/message-view.js";
 import { NegotiationsView } from "../views/negotiations-view.js";
 
@@ -21,6 +22,7 @@ export class NegotiationController {
     private negotiations = new Negotiations();
     private negotiationsView = new NegotiationsView("#negotiationsView", true);
     private messageView = new MessageView("#mensagemView");
+    private negotiationService = new NegotiationService();
 
     constructor() {
 
@@ -53,15 +55,9 @@ export class NegotiationController {
     }
 
     public dataImport(): void {
-        fetch("http://localhost:8080/dados")
-            .then((res) => {
-                return res.json()
-            }).then((data: Array<any>) => {
-                return data.map(item => {
-                    return new Negotiation(new Date(), item.vezes, item.montante)
-                })
-            }).then((negotiations) => {
-                for(let negotitiation of negotiations) {
+        this.negotiationService.getTodayNegotiation()
+            .then((negotiations) => {
+                for (let negotitiation of negotiations) {
                     this.negotiations.addNegotiation(negotitiation);
                 }
                 this.negotiationsView.update(this.negotiations);
