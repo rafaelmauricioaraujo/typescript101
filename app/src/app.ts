@@ -11,3 +11,13 @@ if (form) {
 } else {
     throw new Error("Application failed on start up");
 }
+
+const importDataButton = document.querySelector("#botao-importa");
+if (importDataButton) {
+    importDataButton.addEventListener("click", () => {
+        controller.dataImport();
+    });
+
+} else {
+    throw new Error("Failed to read import button");
+}

@@ -29,6 +29,21 @@ export class NegotiationController {
         this.clearForm();
         this.updateView();
     }
+    dataImport() {
+        fetch("http://localhost:8080/dados")
+            .then((res) => {
+            return res.json();
+        }).then((data) => {
+            return data.map(item => {
+                return new Negotiation(new Date(), item.vezes, item.montante);
+            });
+        }).then((negotiations) => {
+            for (let negotitiation of negotiations) {
+                this.negotiations.addNegotiation(negotitiation);
+            }
+            this.negotiationsView.update(this.negotiations);
+        });
+    }
     isWeekDay(date) {
         return date.getDay() > DaysOfWeek.SUNDAY && date.getDay() < DaysOfWeek.SATURDAY;
     }

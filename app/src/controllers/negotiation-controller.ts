@@ -11,10 +11,10 @@ export class NegotiationController {
 
     @domInjector("#data")
     private inputDate: HTMLInputElement;
-    
+
     @domInjector("#quantidade")
     private inputQuantity: HTMLInputElement;
-    
+
     @domInjector("#valor")
     private inputValue: HTMLInputElement;
 
@@ -50,6 +50,22 @@ export class NegotiationController {
         this.negotiations.addNegotiation(negotiation);
         this.clearForm();
         this.updateView();
+    }
+
+    public dataImport(): void {
+        fetch("http://localhost:8080/dados")
+            .then((res) => {
+                return res.json()
+            }).then((data: Array<any>) => {
+                return data.map(item => {
+                    return new Negotiation(new Date(), item.vezes, item.montante)
+                })
+            }).then((negotiations) => {
+                for(let negotitiation of negotiations) {
+                    this.negotiations.addNegotiation(negotitiation);
+                }
+                this.negotiationsView.update(this.negotiations);
+            });
     }
 
     private isWeekDay(date: Date) {
