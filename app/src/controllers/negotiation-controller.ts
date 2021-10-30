@@ -58,10 +58,20 @@ export class NegotiationController {
     }
 
     public dataImport(): void {
-        this.negotiationService.getTodayNegotiation()
-            .then((negotiations) => {
-                for (let negotitiation of negotiations) {
-                    this.negotiations.addNegotiation(negotitiation);
+        this.negotiationService
+            .getTodayNegotiation()
+            .then((todayNegotiations) => {
+                return todayNegotiations.filter((todayNegotiation) => {
+                    return !this.negotiations
+                        .list()
+                        .some((negotiationOnTheList) => {
+                            return negotiationOnTheList.isEqual(todayNegotiation);
+                        });
+                })
+            })
+            .then((todayNegotiations) => {
+                for (let todayNegotitiation of todayNegotiations) {
+                    this.negotiations.addNegotiation(todayNegotitiation);
                 }
                 this.negotiationsView.update(this.negotiations);
             });

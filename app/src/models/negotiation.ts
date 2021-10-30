@@ -1,6 +1,7 @@
-import { Printable } from "../utils/printable.js";
 
-export class Negotiation implements Printable {
+import { Model } from "../interfaces/model.js";
+
+export class Negotiation implements Model<Negotiation> {
     private _date: Date;
     constructor( date: Date, public readonly quantity: number, public readonly value: number) { 
         this._date = date;
@@ -29,6 +30,12 @@ export class Negotiation implements Printable {
         Quantity: ${this.quantity}
         Value: ${this.value}
         `;
+    }
+
+    public isEqual(negotiation: Negotiation): boolean {
+        return this.date.getDate() === negotiation.date.getDate()
+            && this.date.getMonth() === negotiation.date.getMonth()
+            && this.date.getFullYear() === negotiation.date.getFullYear();
     }
 
 }
