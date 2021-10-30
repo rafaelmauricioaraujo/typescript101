@@ -28,3 +28,4 @@ export class NegotiationsView extends View {
         return new Intl.DateTimeFormat().format(Date);
     }
 }
+//# sourceMappingURL=negotiations-view.js.map
